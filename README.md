@@ -29,34 +29,7 @@ Sistem pemantauan dan irigasi air limbah berbasis IoT yang dirancang untuk meman
 * **Framework/Library:** Bootstrap 5
 
 ---
-
-## 📁 Struktur Repositori
-
-```text
-.
-├── irigasi_air_limbah/
-│   └── irigasi_air_limbah.ino       # Program C++ untuk ESP32
-├── logika_alat_masuk_ke_db/
-│   ├── get_mode_control.php         # API mode kontrol alat
-│   ├── get_sensor_limits.php        # API batasan nilai sensor
-│   ├── get_status_pompa.php         # API pemantauan status pompa
-│   ├── insert_pompa.php             # API pencatatan aktivitas pompa
-│   └── insert_sensor_data.php       # API penerima data sensor dari ESP32
-├── control_pompa.php                # Kontrol manual pompa via web
-├── data_sensor.php                  # Halaman riwayat data sensor
-├── db.php                           # File koneksi database MySQL
-├── get_sensor_data.php              # API penarik data sensor
-├── index_admin.php                  # Dashboard khusus admin
-├── index_user.php                   # Dashboard khusus pengguna
-├── index.php                        # Halaman utama / dashboard
-├── irrigation_system.sql            # File dump struktur database MySQL
-├── login.php                        # Halaman otentikasi masuk
-├── logout.php                       # Fitur keluar sistem
-├── register.php                     # Halaman pendaftaran akun
-├── sensor_limits.php                # Pengaturan batas sensor
-└── README.md                        # Dokumentasi projek
-
-🔧 Panduan Instalasi & Penggunaan
+##🔧 Panduan Instalasi & Penggunaan
 1. Pengaturan Database
 Buka MySQL Server (misal via XAMPP / phpMyAdmin / Laragon).
 
@@ -84,8 +57,9 @@ const char* ssid = "YOUR_WIFI_SSID";
 const char* password = "YOUR_WIFI_PASSWORD";
 String serverName = "http://IP_SERVER_KAMU/logika_alat_masuk_ke_db/insert_sensor_data.php";
 Upload program ke board ESP32.
+--
 
-🔄 Alur Komunikasi Data
+## 🔄 Alur Komunikasi Data
 Plaintext
 [ Sensor (pH, Soil, DHT22) ] ──► [ ESP32 ] ──( HTTP POST )──► [ API PHP ] ──► [ Database MySQL ]
                                    │                                                │
@@ -95,9 +69,39 @@ Pengiriman Data: ESP32 membaca data sensor lalu mengirimkannya ke endpoint inser
 Penyimpanan: Backend PHP memproses dan menyimpan data ke database MySQL.
 
 Pemberian Perintah: ESP32 membaca status/mode kontrol dari server untuk mengaktifkan atau mematikan pompa air.
+--
 
-📸 Tampilan Dashboard
+## 📸 Tampilan Dashboard
 (Unggah foto alat atau screenshot dashboard di sini)
+--
 
-📝 Catatan & Lisensi
+## 📝 Catatan & Lisensi
 Projek ini dikembangkan sebagai bagian dari Tugas Akhir / Portofolio Pengembang IoT & Web.
+
+--
+
+## 📁 Struktur Repositori
+
+```text
+.
+├── irigasi_air_limbah/
+│   └── irigasi_air_limbah.ino       # Program C++ untuk ESP32
+├── logika_alat_masuk_ke_db/
+│   ├── get_mode_control.php         # API mode kontrol alat
+│   ├── get_sensor_limits.php        # API batasan nilai sensor
+│   ├── get_status_pompa.php         # API pemantauan status pompa
+│   ├── insert_pompa.php             # API pencatatan aktivitas pompa
+│   └── insert_sensor_data.php       # API penerima data sensor dari ESP32
+├── control_pompa.php                # Kontrol manual pompa via web
+├── data_sensor.php                  # Halaman riwayat data sensor
+├── db.php                           # File koneksi database MySQL
+├── get_sensor_data.php              # API penarik data sensor
+├── index_admin.php                  # Dashboard khusus admin
+├── index_user.php                   # Dashboard khusus pengguna
+├── index.php                        # Halaman utama / dashboard
+├── irrigation_system.sql            # File dump struktur database MySQL
+├── login.php                        # Halaman otentikasi masuk
+├── logout.php                       # Fitur keluar sistem
+├── register.php                     # Halaman pendaftaran akun
+├── sensor_limits.php                # Pengaturan batas sensor
+└── README.md                        # Dokumentasi projek
