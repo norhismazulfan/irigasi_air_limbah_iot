@@ -104,7 +104,7 @@ String serverName = "http://IP_SERVER_KAMU/logika_alat_masuk_ke_db/insert_sensor
 
 ## 📸 Tampilan Dashboard
 
-*(Unggah foto alat atau screenshot dashboard di sini)*
+<img width="1366" height="768" alt="Image" src="https://github.com/user-attachments/assets/82b718e4-05b0-4216-926e-fb45c8c62e23" />
 
 ---
 
