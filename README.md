@@ -29,56 +29,6 @@ Sistem pemantauan dan irigasi air limbah berbasis IoT yang dirancang untuk meman
 * **Framework/Library:** Bootstrap 5
 
 ---
-##🔧 Panduan Instalasi & Penggunaan
-1. Pengaturan Database
-Buka MySQL Server (misal via XAMPP / phpMyAdmin / Laragon).
-
-Buat database baru dengan nama irrigation_system.
-
-Import file irrigation_system.sql ke dalam database tersebut.
-
-2. Pengaturan Web Backend
-Pindahkan seluruh folder projek ini ke direktori web server kamu (misal: htdocs/ pada XAMPP).
-
-Buka file db.php lalu sesuaikan kredensial database sesuai dengan environment kamu:
-
-PHP
-$host = "localhost";
-$user = "YOUR_DB_USER";
-$pass = "YOUR_DB_PASSWORD";
-$db   = "irrigation_system";
-3. Pengaturan ESP32 (Firmware)
-Buka file irigasi_air_limbah/irigasi_air_limbah.ino menggunakan Arduino IDE.
-
-Sesuaikan konfigurasi WiFi dan URL endpoint backend:
-
-C++
-const char* ssid = "YOUR_WIFI_SSID";
-const char* password = "YOUR_WIFI_PASSWORD";
-String serverName = "http://IP_SERVER_KAMU/logika_alat_masuk_ke_db/insert_sensor_data.php";
-Upload program ke board ESP32.
---
-
-## 🔄 Alur Komunikasi Data
-Plaintext
-[ Sensor (pH, Soil, DHT22) ] ──► [ ESP32 ] ──( HTTP POST )──► [ API PHP ] ──► [ Database MySQL ]
-                                   │                                                │
-                                   └───────( Baca Status Relay via HTTP GET )───────┘
-Pengiriman Data: ESP32 membaca data sensor lalu mengirimkannya ke endpoint insert_sensor_data.php.
-
-Penyimpanan: Backend PHP memproses dan menyimpan data ke database MySQL.
-
-Pemberian Perintah: ESP32 membaca status/mode kontrol dari server untuk mengaktifkan atau mematikan pompa air.
---
-
-## 📸 Tampilan Dashboard
-(Unggah foto alat atau screenshot dashboard di sini)
---
-
-## 📝 Catatan & Lisensi
-Projek ini dikembangkan sebagai bagian dari Tugas Akhir / Portofolio Pengembang IoT & Web.
-
---
 
 ## 📁 Struktur Repositori
 
@@ -105,3 +55,58 @@ Projek ini dikembangkan sebagai bagian dari Tugas Akhir / Portofolio Pengembang 
 ├── register.php                     # Halaman pendaftaran akun
 ├── sensor_limits.php                # Pengaturan batas sensor
 └── README.md                        # Dokumentasi projek
+```
+
+---
+
+## 🔧 Panduan Instalasi & Penggunaan
+
+### 1. Pengaturan Database
+1. Buka MySQL Server (misal via XAMPP / phpMyAdmin / Laragon).
+2. Buat database baru dengan nama `irrigation_system`.
+3. *Import* file `irrigation_system.sql` ke dalam database tersebut.
+
+### 2. Pengaturan Web Backend
+1. Pindahkan seluruh folder projek ini ke direktori web server kamu (misal: `htdocs/` pada XAMPP).
+2. Buka file `db.php` lalu sesuaikan kredensial database sesuai dengan *environment* kamu:
+```php
+$host = "localhost";
+$user = "YOUR_DB_USER";
+$pass = "YOUR_DB_PASSWORD";
+$db   = "irrigation_system";
+```
+
+### 3. Pengaturan ESP32 (Firmware)
+1. Buka file `irigasi_air_limbah/irigasi_air_limbah.ino` menggunakan Arduino IDE.
+2. Sesuaikan konfigurasi WiFi dan URL endpoint backend:
+```cpp
+const char* ssid = "YOUR_WIFI_SSID";
+const char* password = "YOUR_WIFI_PASSWORD";
+String serverName = "http://IP_SERVER_KAMU/logika_alat_masuk_ke_db/insert_sensor_data.php";
+```
+3. *Upload* program ke board ESP32.
+
+---
+
+## 🔄 Alur Komunikasi Data
+
+```text
+[ Sensor (pH, Soil, DHT22) ] ──► [ ESP32 ] ──( HTTP POST )──► [ API PHP ] ──► [ Database MySQL ]
+                                   │                                                │
+                                   └───────( Baca Status Relay via HTTP GET )───────┘
+```
+
+1. **Pengiriman Data:** ESP32 membaca data sensor lalu mengirimkannya ke endpoint `insert_sensor_data.php`.
+2. **Penyimpanan:** Backend PHP memproses dan menyimpan data ke database MySQL.
+3. **Pemberian Perintah:** ESP32 membaca status/mode kontrol dari server untuk mengaktifkan atau mematikan pompa air.
+
+---
+
+## 📸 Tampilan Dashboard
+
+*(Unggah foto alat atau screenshot dashboard di sini)*
+
+---
+
+## 📝 Catatan & Lisensi
+Projek ini dikembangkan sebagai bagian dari Tugas Akhir / Portofolio Pengembang IoT & Web.
